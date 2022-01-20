@@ -27,7 +27,7 @@ def getCountryList():
     for country in countries:
         print(country)
         
-def getRSSInfo():
+def getAllCountriesCodes():        
     req = requests.get(url, "cacert.pem")
     soup = bs(req.content, 'html.parser')
     ##finds the entire list of info for country code and the associated RSS link    
@@ -36,29 +36,37 @@ def getRSSInfo():
         print(a['href'])
         print(a.text[0:3])
         
+def findConversion(code1, code2, rssLink):
+        countryList = getRSSLinkInfoByTag(rssLink, 'title')
+        conversionRate = 0.0
+        
+        print(code2.upper())
+        print(code1.upper())
+        for c in countryList:
+                print(c)
+                ##print(type(c))
+                if code1.upper() in c.string:
+                        print(c.string)
+                                
+        
 url = 'https://www.fx-exchange.com/currency-exchange-rates-rss-feed.html'
 startURL = 'https://www.fx-exchange.com/'
 endURL = '/rss.xml'
 
-anchorInfo = input('Please enter a three letter country code:')
-rssLink = getFeedURLByCountryCode(anchorInfo.lower())
-CountryInfo = getRSSLinkInfoByTag(rssLink, 'item')
-CurrencyInfo = getRSSLinkInfoByTag(rssLink, 'description')
-printRSSInfo(CurrencyInfo)   
+anchorInfo1 = input('Please enter a three letter country code to convert from: ')
+rssLink1 = getFeedURLByCountryCode(anchorInfo1.lower())
+CountryInfo1 = getRSSLinkInfoByTag(rssLink1, 'item')
+CurrencyInfo1 = getRSSLinkInfoByTag(rssLink1, 'description')
+TitleInfo1 = getRSSLinkInfoByTag(rssLink1, 'title')
+#printRSSInfo(CurrencyInfo1)   
 
-anchorInfo = input('Please enter a three letter country code to convert to:')
-rssLink = getFeedURLByCountryCode(anchorInfo.lower())
-CountryInfo = getRSSLinkInfoByTag(rssLink, 'item')
-CurrencyInfo = getRSSLinkInfoByTag(rssLink, 'description')
-##printRSSInfo(info)     
-
-
-        
-
-
-
-    
-
+anchorInfo2 = input('Please enter a three letter country code to convert to: ')
+rssLink2 = getFeedURLByCountryCode(anchorInfo2.lower())
+CountryInfo2 = getRSSLinkInfoByTag(rssLink2, 'item')
+CurrencyInfo2 = getRSSLinkInfoByTag(rssLink2, 'description')
+TitleInfo2 = getRSSLinkInfoByTag(rssLink2, 'title')
+##printRSSInfo(CurrencyInfo2)
+findConversion(anchorInfo1, anchorInfo2, rssLink2);
 
 print("---------------------------------\n")
 print("---------------------------------\n")
