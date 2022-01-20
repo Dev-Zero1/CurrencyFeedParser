@@ -80,7 +80,7 @@ while (alive and mode == 2) or (running < 10000 and mode == 1):
         if  mode == 1:
                 findConversion(anchorInfo1, anchorInfo2, rssLink2);
                 time.sleep(sec)
-                running = running + 10
+                running = running + sec
                 print("\n\n")
         elif mode == 2:
                 anchorInfo1 = input('\nPlease enter a three letter country code to convert from: ')
