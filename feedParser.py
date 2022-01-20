@@ -60,21 +60,40 @@ def getInputData(rssLink):
         ##printRSSInfo(TitleInfo)
         
 alive = True
+
 url = 'https://www.fx-exchange.com/currency-exchange-rates-rss-feed.html'
 startURL = 'https://www.fx-exchange.com/'
 endURL = '/rss.xml'
+running = 0
+mode = 0
+sec = 4
+while mode < 1 or mode > 2:
+        mode = int(input('\nEnter 1 for Auto refresh monitoring\nEnter 2 for Manual searching...... '))
 
-while alive:        
-        anchorInfo1 = input('Please enter a three letter country code to convert from: ')
-        rssLink1 = getFeedURLByCountryCode(anchorInfo1.lower())
+anchorInfo1 = input('\nPlease enter a three letter country code to convert from: ')
+rssLink1 = getFeedURLByCountryCode(anchorInfo1.lower())
+
+anchorInfo2 = input('\nPlease enter a three letter country code to convert to: ')
+rssLink2 = getFeedURLByCountryCode(anchorInfo2.lower())
         
-        anchorInfo2 = input('Please enter a three letter country code to convert to: ')
-        rssLink2 = getFeedURLByCountryCode(anchorInfo2.lower())
+while (alive and mode == 2) or (running < 10000 and mode == 1):                      
+        if  mode == 1:
+                findConversion(anchorInfo1, anchorInfo2, rssLink2);
+                time.sleep(sec)
+                running = running + 10
+                print("\n\n")
+        elif mode == 2:
+                anchorInfo1 = input('\nPlease enter a three letter country code to convert from: ')
+                rssLink1 = getFeedURLByCountryCode(anchorInfo1.lower())
+
+                anchorInfo2 = input('\nPlease enter a three letter country code to convert to: ')
+                rssLink2 = getFeedURLByCountryCode(anchorInfo2.lower())
+                findConversion(anchorInfo1, anchorInfo2, rssLink2);
+                
+                print("---------------------------------\n")
+                if str(input('\nEnter 1 to Search Again')[0]) == "1":
+                        continue
+                else:
+                        alive = False
+                print("---------------------------------\n")          
         
-        findConversion(anchorInfo1, anchorInfo2, rssLink2);
-        print("---------------------------------\n")
-        if str(input('\nEnter 1 to continue')[0]) == "1":
-                continue
-        else:
-                alive = False
-        print("---------------------------------\n")
