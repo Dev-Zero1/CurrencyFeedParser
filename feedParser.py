@@ -38,15 +38,18 @@ def getAllCountriesCodes():
         
 def findConversion(code1, code2, rssLink):
         countryList = getRSSLinkInfoByTag(rssLink, 'title')
+        itemList = getRSSLinkInfoByTag(rssLink, 'item')
         conversionRate = 0.0
-        
+        item = 0
         print(code2.upper())
         print(code1.upper())
         for c in countryList:
-                print(c)
-                ##print(type(c))
+                ##print(c)
+                ##print(type(c))             
                 if code1.upper() in c.string:
                         print(c.string)
+                        print(itemList[item])
+                item= item +1
                                 
         
 url = 'https://www.fx-exchange.com/currency-exchange-rates-rss-feed.html'
@@ -55,16 +58,16 @@ endURL = '/rss.xml'
 
 anchorInfo1 = input('Please enter a three letter country code to convert from: ')
 rssLink1 = getFeedURLByCountryCode(anchorInfo1.lower())
-CountryInfo1 = getRSSLinkInfoByTag(rssLink1, 'item')
-CurrencyInfo1 = getRSSLinkInfoByTag(rssLink1, 'description')
-TitleInfo1 = getRSSLinkInfoByTag(rssLink1, 'title')
-#printRSSInfo(CurrencyInfo1)   
+##CountryInfo1 = getRSSLinkInfoByTag(rssLink1, 'item')
+##CurrencyInfo1 = getRSSLinkInfoByTag(rssLink1, 'description')
+##TitleInfo1 = getRSSLinkInfoByTag(rssLink1, 'title')
+##printRSSInfo(CurrencyInfo1)   
 
 anchorInfo2 = input('Please enter a three letter country code to convert to: ')
 rssLink2 = getFeedURLByCountryCode(anchorInfo2.lower())
-CountryInfo2 = getRSSLinkInfoByTag(rssLink2, 'item')
-CurrencyInfo2 = getRSSLinkInfoByTag(rssLink2, 'description')
-TitleInfo2 = getRSSLinkInfoByTag(rssLink2, 'title')
+##CountryInfo2 = getRSSLinkInfoByTag(rssLink2, 'item')
+##CurrencyInfo2 = getRSSLinkInfoByTag(rssLink2, 'description')
+##TitleInfo2 = getRSSLinkInfoByTag(rssLink2, 'title')
 ##printRSSInfo(CurrencyInfo2)
 findConversion(anchorInfo1, anchorInfo2, rssLink2);
 
