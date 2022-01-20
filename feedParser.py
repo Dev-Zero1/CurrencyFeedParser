@@ -2,9 +2,8 @@ import requests
 import os
 from bs4 import BeautifulSoup as bs
 import feedparser as fp
-import ssl
 import certifi
-import urllib.request
+
 
 def getFeedURLByCountryCode(code):     
         rssLink = startURL + code[0:3]  + endURL
@@ -45,7 +44,7 @@ anchorInfo = input('Please enter a three letter country code:')
 rssLink = getFeedURLByCountryCode(anchorInfo.lower())
 CountryInfo = getRSSLinkInfoByTag(rssLink, 'item')
 CurrencyInfo = getRSSLinkInfoByTag(rssLink, 'description')
-##printRSSInfo(info)   
+printRSSInfo(CurrencyInfo)   
 
 anchorInfo = input('Please enter a three letter country code to convert to:')
 rssLink = getFeedURLByCountryCode(anchorInfo.lower())
