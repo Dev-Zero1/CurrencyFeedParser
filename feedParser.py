@@ -70,20 +70,23 @@ sec = 0
 while mode < 1 or mode > 2:
         mode = int(input('\nEnter 1 for Auto refresh monitoring\nEnter 2 for Manual searching...... '))
 
-anchorInfo1 = input('\nPlease enter a three letter country code to convert from: ')
-rssLink1 = getFeedURLByCountryCode(anchorInfo1.lower())
 
-anchorInfo2 = input('\nPlease enter a three letter country code to convert to: ')
-rssLink2 = getFeedURLByCountryCode(anchorInfo2.lower())
         
 while (alive and mode == 2) or (running < 10000 and mode == 1):                      
         if  mode == 1:
                 while sec < 1 or sec > 10000:
                         sec = int(input('\nEnter an amount of seconds to set the refresh interval 1-9999'))
+                        
+                anchorInfo1 = input('\nPlease enter a three letter country code to convert from: ')                
+                rssLink1 = getFeedURLByCountryCode(anchorInfo1.lower())
+                
+                anchorInfo2 = input('\nPlease enter a three letter country code to convert to: ')
+                rssLinkLinkk2 = getFeedURLByCountryCode(anchorInfo2.lower())
+                
                 findConversion(anchorInfo1, anchorInfo2, rssLink2);
                 time.sleep(sec)
                 running = running + sec
-                print("\n\n")
+                print("\n")
         elif mode == 2:
                 anchorInfo1 = input('\nPlease enter a three letter country code to convert from: ')
                 rssLink1 = getFeedURLByCountryCode(anchorInfo1.lower())
