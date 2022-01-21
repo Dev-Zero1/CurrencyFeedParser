@@ -69,13 +69,11 @@ mode = 0
 sec = 0
 while mode < 1 or mode > 2:
         mode = int(input('\nEnter 1 for Auto refresh monitoring\nEnter 2 for Manual searching...... '))
-
-
         
 while (alive and mode == 2) or (running < 10000 and mode == 1):                      
         if  mode == 1:
-                while sec < 1 or sec > 10000:
-                        sec = int(input('\nEnter an amount of seconds to set the refresh interval 1-9999'))
+                while sec < 59 or sec > 9999:
+                        sec = int(input('\nEnter an amount of seconds to set the refresh interval 60-9999'))
                         
                 anchorInfo1 = input('\nPlease enter a three letter country code to convert from: ')                
                 rssLink1 = getFeedURLByCountryCode(anchorInfo1.lower())
